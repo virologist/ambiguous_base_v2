@@ -63,7 +63,7 @@ for name in Names:
     ab_name_list = []
     for i in range(len(Sequences[name])):
         if Sequences[name][i] in ambiguous_bases.keys():
-            #print("{}这条序列的第{}号位点有模糊碱基{}".format(name,str(i),Sequences[name][i]))
+            print("{}这条序列的第{}号位点有模糊碱基{}".format(name,str(i+1),Sequences[name][i]))
             ab_position_list.append(str(i))
             ab_name_list.append(Sequences[name][i])
     get_ab[name] = ab_position_list
@@ -135,7 +135,8 @@ for i in range(len(all_words)):
                 st_codon_to_count = Counter(st_codon_to)
                 top_codon = st_codon_to_count.most_common(1)[0][0]
                 all_words[i][j] = top_codon
-    Sequences[name] = "".join(all_words[i])
+            name = Names[i]
+            Sequences[name] = "".join(all_words[i])
 print("共有{}个提前终止的密码子，出现在第{}条序列".format(str(o),st_codon_position))
 
 with open('clean_data.fasta', 'a') as f:
